@@ -1,0 +1,154 @@
+from selenium import webdriver
+from time import sleep
+from secrets import username, password
+from random import randint
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+import subprocess
+import time
+
+
+class Bot():
+    def __init__(self):
+        self.driver = webdriver.Chrome()
+
+    def login(self):
+        self.driver.get('https://tinder.com') 
+
+        sleep(4)
+
+        btn_connexion = self.driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/main/div[1]/div/div/div/div/header/div/div[2]/div[2]/a')
+        btn_connexion.click()
+
+        sleep(2)
+    
+        btn_fb = self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div[1]/div/div[3]/span/div[2]/button')
+        btn_fb.click()
+
+        sleep(2)
+            
+        base_window = self.driver.window_handles[0]
+        self.driver.switch_to_window(self.driver.window_handles[1])
+
+        sleep(2)
+
+        btn_accept = self.driver.find_element_by_xpath('/html/body/div[2]/div[2]/div/div/div/div/div[3]/button[2]') 
+        btn_accept.click()
+
+        sleep(2)
+
+        email_in = self.driver.find_element_by_xpath('//*[@id="email"]')
+        email_in.send_keys(username[i])
+
+        sleep(2)
+
+        pw_in = self.driver.find_element_by_xpath('//*[@id="pass"]')
+        pw_in.send_keys(password[i])
+
+        sleep(3)
+
+        login_btn = self.driver.find_element_by_xpath('/html/body/div/div[2]/div[1]/form/div/div[3]/label[2]/input')
+        login_btn.click()
+
+        sleep(6)
+
+        self.driver.switch_to_window(base_window)
+        sleep(3)
+
+        btnallow = bot.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[3]/button[1]')
+        btnallow.click()
+        sleep(2)
+
+        btnnotinterested = self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[3]/button[2]')
+        btnnotinterested.click()
+        sleep(3)
+
+        btn_accept_tracker = self.driver.find_element_by_xpath('/html/body/div[1]/div/div[2]/div/div/div[1]/button')
+        btn_accept_tracker.click()
+        sleep(4)
+        
+    def like(self):                                        
+        try:
+            like_btn = self.driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/main/div[1]/div/div/div[1]/div[1]/div/div[4]/div/div[4]/button')
+            like_btn.click()
+            print("like1")                        
+        except Exception:
+            like_btn2 = self.driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/main/div[1]/div/div/div[1]/div[1]/div/div[5]/div/div[4]/button')
+            like_btn2.click()          
+            print("like2")                   
+
+    def dislike(self):
+        dislike_btn = self.driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/main/div[1]/div/div/div[1]/div[1]/div[2]/div[2]/button')
+        dislike_btn.click()
+    def close_popup(self):
+        close_btn = self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div[3]/button[2]')
+        close_btn.click()
+
+    def send_mail(self):
+        remind_me = self.driver.find_element_by_xpath('html/body/div[2]/div/div/div[1]/div[2]/button[2]')
+        remind_me.click()
+
+    #def delete(self):
+
+        self.driver.get('https://tinder.com/app/profile') 
+        btn_del = self.driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/aside/nav/div/div/div/div/div/div/div[19]/div/div/div/div/label')
+        btn_del.click()
+        sleep(1)
+        btn_del_2 = self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div[2]/button[2]/span')
+        btn_del_2.click()
+        sleep(1)
+
+        btn_del_3 = self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div[2]/button[1]/span')
+        btn_del_3.click()
+
+    def auto_swipe(self):
+        z = 0
+
+
+
+        while z < 75:
+            print(z)
+            z += 1
+
+            try:
+                sleep(0.5)
+                print("try 1")
+                self.like()
+
+            except Exception:
+
+                try:
+                    self.close_popup()
+                    print("try 2")
+
+                except Exception:
+
+                    try:
+                        self.send_mail()
+                        print("try3")
+                    
+                    except Exception :
+                    #    try:
+                        webdriver.ActionChains(self.driver).send_keys(Keys.ESCAPE).perform()
+                        sleep(2)
+
+                   #     except Exception:
+                      #      print("break")
+                      #      break
+
+ 
+
+for i in range(5,6):
+#   subprocess.call(["/Users/Shared/code/td/bash.sh"])
+#   sleep (33)
+    bot = Bot()
+    bot.login()
+    sleep(15)
+    print(i)
+  # bot.delete()
+    bot.auto_swipe()
+    sleep(7)
+    print(i)
+    print("quit")
+    bot.driver.quit()
+    sleep(7)
