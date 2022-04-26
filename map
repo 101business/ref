@@ -1,0 +1,20 @@
+import folium
+
+m = folium.Map(location=[51.51751225079614, -0.08270579193104635], zoom_start=12, tiles="Stamen Terrain")
+
+folium.Marker([51.51425593874543, -0.12049768880757644], popup = '''<img src ="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Paris_Rue_de_Montfaucon_depuis_R._Clement_2014.jpg/320px-Paris_Rue_de_Montfaucon_depuis_R._Clement_2014.jpg"> <b>Atelier d'écriture</b>, <a href = "https://www.google.com">bruit</i>: 10dB, @: 200mbps, Lumière: 150lux''').add_to(m)
+
+folium.Marker([51.53053517115311, -0.04898379164121953], popup = "<b>Lieux de tournage</b>, bruit: 5dB, @: 100mbps, Lumière: 200lux", tooltip= "mon lieu préféré de tournage", icon=folium.Icon(color='beige', icon='print', prefix='fa')
+).add_to(m)
+
+folium.Marker([51.494713177493665, -0.05479792962222416], popup = "<b>Lieux de photographie</b>, bruit: 30dB, @: 50mbps, Lumière: 400lux", icon=folium.Icon(color='green', icon='pencil', prefix='fa')
+ ).add_to(m)
+
+
+m.save("map.html")
+
+
+
+
+
+
